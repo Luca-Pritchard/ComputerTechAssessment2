@@ -16,7 +16,7 @@
 
   #map {
     position: absolute;
-    top: 50px; /* height of the button bar */
+    top: 50px; 
     left: 0;
     right: 0;
     bottom: 0;
@@ -52,9 +52,16 @@
   <script>
     function getParams() {
       const urlParams = new URLSearchParams(window.location.search);
+      if CohoBerowra
       return {
         lat: parseFloat(urlParams.get('lat')) || -33.681782,
         lng: parseFloat(urlParams.get('lng')) || 151.12587,
+        zoom: parseInt(urlParams.get('zoom')) || 10,
+      }
+      if WingboyNewtown
+      return {
+        lat: parseFloat(urlParams.get('lat')) || 33.89372634887695,
+        lng: parseFloat(urlParams.get('lng')) || 151.1832275390625,
         zoom: parseInt(urlParams.get('zoom')) || 10
       };
     }
@@ -68,22 +75,33 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
 
-      var LiveliteIcon = L.icon({
+  // Coho Berowra
+  var markerCoho = L.marker([-33.612826, 151.138754], {icon: LiveliteIcon}).addTo(map);
+  markerCoho.bindPopup("<b>COHO BEROWRA</b><br>Locally owned cafe", style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;");
+
+  // Wingboy Newtown
+ var markerWingboy = L.marker([-33.8980, 151.1746], {icon: LiveliteIcon}).addTo(map);
+  markerWingboy.bindPopup("<b>WINGBOY NEWTOWN</b><br>Value chicken wing restaurant chain", style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;")
+});
+
+      if (lat === -33.612826 && lng === 151.138754) {
+        marker.openPopup();
+      } 
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      var WingboyNewtown = L.icon({
         iconUrl: 'LiveliteIcon.png',
         iconSize: [60, 70],
         iconAnchor: [40, 70],
         popupAnchor: [-10, -60]
       });
 
-      // Example marker
-      var marker = L.marker([-33.612826, 151.138754], {icon: LiveliteIcon}).addTo(map);
-      marker.bindPopup("<b>COHO BEROWRA</b><br>Locally owned cafe", style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;");
-
-      // Optionally open popup if location matches
-      if (lat === -33.612826 && lng === 151.138754) {
+            if (lat === 33.89372634887695 && lng === 151.1832275390625) {
         marker.openPopup();
-      }
-    });
+            }
   </script>
     
   </body>
