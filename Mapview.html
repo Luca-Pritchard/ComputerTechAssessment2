@@ -1,108 +1,78 @@
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>LiveLite</title>
-    <link rel="icon" type="image/x-icon" href="favicon-32x32.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-          crossorigin=""/>
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Map with Markers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  #map {
-    position: absolute;
-    top: 50px; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .top-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background-color: #f8f8f8;
-    z-index: 1000;
-    padding: 10px;
-  }
-
-  .top-bar button {
-    padding: 3px 40px;
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-</style>
-  </head>
-  <body>
-  <div class="top-bar">
-      <button onclick="window.location.href='Listview.html'" style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">List View</button>
-    </div>
-    <div id="map"></div>
-    
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-  <script>
-    function getParams() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if CohoBerowra
-      return {
-        lat: parseFloat(urlParams.get('lat')) || -33.681782,
-        lng: parseFloat(urlParams.get('lng')) || 151.12587,
-        zoom: parseInt(urlParams.get('zoom')) || 10,
+        #map { height: 880px; }
+    </style>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
       }
-      if WingboyNewtown
-      return {
-        lat: parseFloat(urlParams.get('lat')) || 33.89372634887695,
-        lng: parseFloat(urlParams.get('lng')) || 151.1832275390625,
-        zoom: parseInt(urlParams.get('zoom')) || 10
-      };
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const { lat, lng, zoom } = getParams();
-      var map = L.map('map').setView([lat, lng], zoom);
-
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
-
-  // Coho Berowra
-  var markerCoho = L.marker([-33.612826, 151.138754], {icon: LiveliteIcon}).addTo(map);
-  markerCoho.bindPopup("<b>COHO BEROWRA</b><br>Locally owned cafe", style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;");
-
-  // Wingboy Newtown
- var markerWingboy = L.marker([-33.8980, 151.1746], {icon: LiveliteIcon}).addTo(map);
-  markerWingboy.bindPopup("<b>WINGBOY NEWTOWN</b><br>Value chicken wing restaurant chain", style="font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;")
-});
-
-      if (lat === -33.612826 && lng === 151.138754) {
-        marker.openPopup();
-      } 
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
-
-      var WingboyNewtown = L.icon({
-        iconUrl: 'LiveliteIcon.png',
-        iconSize: [60, 70],
-        iconAnchor: [40, 70],
-        popupAnchor: [-10, -60]
-      });
-
-            if (lat === 33.89372634887695 && lng === 151.1832275390625) {
-        marker.openPopup();
-            }
-  </script>
     
-  </body>
-  </html>
+      #map {
+        position: absolute;
+        top: 50px; 
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    
+      .top-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        background-color: #f8f8f8;
+        z-index: 1000;
+        padding: 10px;
+      }
+    
+      .top-bar button {
+        padding: 3px 40px;
+        font-size: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+      </head>
+      <body>
+      <div class="top-bar">
+          <button onclick="window.location.href='Listview.html'" style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">List View</button>
+        </div>
+        <div id="map"></div>
+        
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin="">
+        </script>
+<body>
+    <div id="map"></div>
+    <script>
+        // Updated coordinates to center the map over North Sydney
+        var map = L.map('map').setView([-33.74, 151.10], 11);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        var cheapPlaces = [
+            { name: "Place 1", coords: [-33.713934, 151.08487]},
+            { name: "Place 2", coords: [-33.8945, 151.1828]},
+            { name: "Place 3", coords: [-33.612826, 151.138754]}
+        ];
+
+        cheapPlaces.forEach(function(place) {
+            L.marker(place.coords).addTo(map)
+                .bindPopup(place.name);
+        });
+    </script>
+</body>
+</html>
