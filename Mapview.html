@@ -21,7 +21,6 @@
             bottom: 0;
             width: 100%; 
             height: calc(100% - 50px); 
-            background-color: #e0e0e0; /* Added background color for debugging */
         }
 
         .top-bar {
@@ -44,30 +43,71 @@
 </head>
 <body>
     <div class="top-bar">
-        <button onclick="window.location.href='Listview.html'">List View</button>
+    <button onclick="window.location.href='Listview.html'">List View</button>
+    <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'">Add a Suggestion!</button>
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
     <div id="map"></div>
     <script>
-        var map = L.map('map').setView([-33.74, 151.10], 11);
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                lat: parseFloat(params.get("lat")),
+                lng: parseFloat(params.get("lng")),
+                zoom: parseInt(params.get("zoom"))
+            };
+        }
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+        var mapParams = getQueryParams();
+        var map = L.map('map').setView(
+            [mapParams.lat || -33.74, mapParams.lng || 151.10],
+            mapParams.zoom || 11
+        );
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
         var cheapPlaces = [
             { name: "Ronaldo + Co. Cooking", coords: [-33.713918, 151.084837]},
+            { name: "Oriental Asian Cuisine", coords: [-33.702863, 151.101006]},
+            { name: "YIYI Asian Cuisine", coords: [-33.425756, 151.344261]},
+            { name: "Master Kebabs", coords: [-33.425402, 151.343888]},
             { name: "Wingboy Newtown", coords: [-33.8945, 151.1828]},
-            { name: "Coho Berowra", coords: [-33.612826, 151.138754]}
+            { name: "Coho Berowra", coords: [-33.612826, 151.138754]},
+            { name: "Mixue Ice cream and Tea", coords: [-33.704264, 151.100357]},
+            { name: "Target Hornsby", coords: [-33.705257, 151.101164]},
+            { name: "The Peak Cafe Newport", coords: [-33.653847, 151.32155]},
+            { name: "Zeus St Greek", coords: [-33.732123, 151.128936]}
         ];
 
         cheapPlaces.forEach(function(place) {
-            L.marker(place.coords).addTo(map)
-                .bindPopup(place.name);
-        });
+    const marker = L.marker(place.coords).addTo(map)
+        .bindPopup(`
+            <b>${place.name}</b><br>
+            <button onclick="window.location.href='Listview.html?lat=${place.coords[0]}&lng=${place.coords[1]}'">
+                View in List
+            </button>`);
+
+            if (mapParams.lat === place.coords[0] && mapParams.lng === place.coords[1]) {
+                marker.openPopup();
+                map.setView(place.coords, mapParams.zoom || 14);
+    }
+});
+            
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            popup
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        map.on('click', onMapClick);
     </script>
 </body>
 </html>

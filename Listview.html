@@ -27,20 +27,53 @@
 </head>
 <body>
   <div class="back-button">
-    <button onclick="window.location.href='Mapview.html?lat=-33.74&lng=151.10zoom=15'" style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Map view</button>
+    <button onclick="window.location.href='Mapview.html'" style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Map view</button>
+    <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'"style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI',sans-serif;">Add A suggestion!</button>
   </div>
 
   <h1>Cheap Places Near You</h1>
 
-  <div class="place">
-    <a href="Mapview.html?lat=-33.612826&lng=151.138754&zoom=15">COHO BEROWRA</a>
+  <div class="place" data-lat="-33.612826" data-lng="151.138754">
+    <a href="Mapview.html?lat=-33.612826&lng=151.138754&zoom=14">COHO BEROWRA</a>
     <p>Locally owned Cafe, Open everyday from 7:00-3:00. Delicious foods, classic modern cafe.</p> 
-    <p><strong>Location:</strong> Shop 11 1C Turner Road Berowra Heights, NSW 2082</p>
+    <p><strong>Location:</strong> Shop 11 1C Turner Ro  ad Berowra Heights, NSW 2082</p>
   </div>
-  <div class="place">
-    <a href="Mapview.html?lat=-33.893726&lng=151.183228&zoom=15">WINGBOY NEWTOWN</a>
+  <div class="place" data-lat="-33.8945" data-lng="151.1828">
+    <a href="Mapview.html?lat=-33.8945&lng=151.1828&zoom=14">WINGBOY NEWTOWN</a>
     <p>Classic chicken wing restaurant chain, not only delicious but has special bundles, deals and all you can eat options which are great value.</p> 
     <p><strong>Location:</strong> 226 King St, Newtown NSW 2042</p>
   </div>
+    <div class="place" data-lat="-33.702863" data-lng="151.101006">
+    <a href="Mapview.html?lat=-33.702863&lng=151.101006&zoom=14">ORIENTAL ASIAN CUISINE</a>
+    <p>Incredibly good value tasty asian cuisine, variety of different asian specialties, easy to takeaway.</p> 
+    <p><strong>Location:</strong> 13/236 Pacific Hwy, Hornsby NSW 2077</p>
+  </div>
+    </div>
+    <div class="place" data-lat="-33.425756" data-lng="151.344261">
+    <a href="Mapview.html?lat=-33.425756&lng=151.344261&zoom=14">YIYI ASIAN CUISINE</a>
+    <p>Full delicious meals for under $10 per person. Extremely high quality</p> 
+    <p><strong>Location:</strong> 127/171 Mann Street, Gosford, NSW 2250</p>
+  </div>
+
+  <script>
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            lat: parseFloat(params.get("lat")),
+            lng: parseFloat(params.get("lng"))
+        };
+    }
+
+    const params = getQueryParams();
+    if (params.lat & params.lng) {
+        const target = document.querySelector(
+            `.place[data-lat='${params.lat}'][data-lng='${params.lng}']`
+        );
+        if (target) {
+            target.style.border = "2px solid green";
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }
+</script> 
 </body>
 </html>
