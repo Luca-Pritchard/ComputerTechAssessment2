@@ -1,4 +1,4 @@
-# **Computer Tech assessment \#2**
+# **Computer Tech assessment #2**
 
 # **Identifying and defining**
 
@@ -89,6 +89,8 @@ I don't believe that these findings make any major changes to how I'm going to d
 ## **Prototype (AI)** 
 
 [https://www.figma.com/make/mC9VttRqO9FYK88lKdzmLX/Affordable-Places---Money-Saving-Tips-Map-App?t=1vL6PbzxAz0pUI1p-0](https://www.figma.com/make/mC9VttRqO9FYK88lKdzmLX/Affordable-Places---Money-Saving-Tips-Map-App?t=1vL6PbzxAz0pUI1p-0) 
+
+(The non-ai protype was submitted as a link on classroom)
 
 # **Producing and Implementing**
 
