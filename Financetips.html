@@ -15,20 +15,27 @@
         }
 
         .top-bar {
-            position: sticky;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 30px;
-            background-color: #f8f8f8;
-            z-index: 1000;
+            background: rgba(241, 248, 233, 0.95);
             padding: 10px;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid rgba(39, 174, 96, 0.1);
         }
 
         .top-bar button {
-            padding: 3px 40px;
+            padding: 5px 32px;
             font-size: 15px;
-            font-family: 'Segoe UI', Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            margin-right: 8px;
+            font-weight: 400;
         }
 
         .container {
@@ -47,6 +54,7 @@
             padding: 30px;
             border-radius: 15px;
             border-left: 5px solid #27ae60;
+            border-right: 5px solid #27ae60;
         }
 
         .section {
@@ -64,6 +72,7 @@
             font-weight: 400;
             color: #2c3e50;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         p {
@@ -101,47 +110,48 @@
         <h1>LiveLite Finance</h1>
 
         <div class="section">
-            <h2>Emergency Fund</h2>
-            <div class="image-placeholder">
-                [Savings jar image]
-            </div>
-            <p>Save 3-6 months of expenses for emergencies. Start with just $500 and build from there.</p>
+            <h2>Where is your money going?</h2>
+            <img src="wastedmoney.jpg" alt="Wasted money concept" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; border-radius: 5px;">
+            <p>The most important thing is to track your spending and act on your findings. Even though some things may seem small like a coffee or a netflix subscription but these things add up, you should quit habits like drinking, smoking and avoid spending hundreds a month on subscriptions.</p>
             <div class="highlight">
-                <p>Monthly expenses of $2000 = Emergency fund goal of $6000-12000</p>
+                <p>Lets say, you buy a coffee a day from say starbucks or a local cafe, lets say thats $4 (even though it's probably more than that) If you stack up $4 a day over a year thats $1460 a year you're losing.</p>
             </div>
         </div>
 
         <div class="section">
-            <h2>Housing Costs</h2>
-            <div class="image-placeholder">
-                [House keys image]
+            <h2>Set Budget Goals</h2>
+            <img src="goals.jpg" alt="Goals concept" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; border-radius: 5px;">
+            <p>Setting goals gives you a direction towards and prevents you from wasting time aimlessly. In addition to this, goals rewire your brain and supply you with motivation to achieve your goals. </p>
+            <div class="highlight">
+                <p>
+                    TIP: Use 'SMART Goals' to make sure you actually achieve your goals - see here: 
+                    <a href="https://www.atlassian.com/blog/productivity/how-to-write-smart-goals" target="_blank" rel="noopener noreferrer">
+                        SMART Goals Guide
+                    </a>
+                </p>
             </div>
-            <p>Keep housing under 30% of income. Consider roommates, downsizing, or moving to cheaper areas.</p>
         </div>
 
         <div class="section">
-            <h2>Food Shopping</h2>
-            <div class="image-placeholder">
-                [Shopping cart image]
+            <h2>Find cheaper options</h2>
+            <img src="cheaperoptions.png" alt="cheaper options concept" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; border-radius: 5px;">
+            <p>Just finding cheaper options can make a HUGE difference. Don't waste money on luxury brands. Always look for the cheaper option, try find things for second hand or if its clothes look in a thrift store</p>
+                        <div class="highlight">
+                <p>You can do this by using the 'Map View' page on Livelite which has a variety of budget options for food, house items, clothes and more.</p>
             </div>
-            <p>Plan meals, buy generic brands, and shop seasonal produce. Can save $100+ monthly.</p>
-        </div>
 
         <div class="section">
-            <h2>Reduce Bills</h2>
-            <div class="image-placeholder">
-                [Light bulb image]
-            </div>
-            <p>Switch to LED bulbs, unplug electronics, adjust thermostat by 2 degrees. Save $30-50 monthly on utilities.</p>
-        </div>
-
+            <h2>Cook it yourself</h2>
+            <img src="homecooked.jpg" alt="homecooking concept" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; border-radius: 5px;">
+            <p>Cookng food yourself is often 3-5x cheaper than eating out, this combined with making sure you are picking cheap ingredients that are good value can seriously increase your saivngs.</p>
+            
         <div class="section">
-            <h2>Budget Rule: 50/30/20</h2>
-            <div class="image-placeholder">
-                [Pie chart image]
+            <h2>Saving and Investing</h2>
+            <img src="savings.jpg" alt="savings and investing concept" style="width: 100%; max-width: 500px; height: auto; display: block; margin: 20px auto; border-radius: 5px;">
+            <p>This is arguably the most important tip on this list. You should make a savings account and put approximately half of your earnings in their and leave it aside for big purchases, this is to prevent you wasting it on little things like going out.</p>
+            <div class="highlight">
+                <p>Tip: While you're building up your savings, you should invest your money. An easy low risk and reliable option would be index funds or a material stock like gold.</p>
             </div>
-            <p>50% needs (rent, food), 30% wants (entertainment), 20% savings and debt payments.</p>
         </div>
-    </div>
 </body>
 </html>

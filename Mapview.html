@@ -12,6 +12,7 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
+            font-family: 'Inter', sans-serif;
         }
         
         #map {
@@ -30,24 +31,100 @@
             left: 0;
             right: 0;
             height: 30px;
-            background-color: #f8f8f8;
-            z-index: 1000;
+            background: rgba(241, 248, 233, 0.95);
             padding: 10px;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid rgba(39, 174, 96, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .top-bar button {
-            padding: 3px 40px;
+        .top-bar-left button {
+            padding: 5px 32px;
             font-size: 15px;
-            font-family: 'Segoe UI', Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            margin-right: 8px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .filter-container {
+            position: relative;
+        }
+
+        .filter-dropdown {
+            padding: 5px 15px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .filter-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+            z-index: 1000;
+            min-width: 120px;
+        }
+
+        .filter-menu.show {
+            display: block;
+        }
+
+        .filter-option {
+            padding: 8px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option:hover {
+            background: #f1f8e9;
+        }
+
+        .filter-option.active {
+            background: #27ae60;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="top-bar">
-    <button onclick="window.location.href='Listview.html'">List View</button>
-    <button onclick="window.location.href='Financetips.html'">Finance Tips</button>
-    <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'">Add a Suggestion!</button>
+        <div class="top-bar-left">
+            <button onclick="window.location.href='Listview.html'">List View</button>
+            <button onclick="window.location.href='Financetips.html'">Finance Tips</button>
+            <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'">Add a Suggestion!</button>
+        </div>
+        
+        <div class="filter-container">
+            <button class="filter-dropdown" onclick="toggleFilterMenu()">Filter by ▼</button>
+            <div class="filter-menu" id="filterMenu">
+                <div class="filter-option active" onclick="filterPlaces('all', this)">All</div>
+                <div class="filter-option" onclick="filterPlaces('food', this)">Food</div>
+                <div class="filter-option" onclick="filterPlaces('cafe', this)">Cafes</div>
+                <div class="filter-option" onclick="filterPlaces('shopping', this)">Shopping</div>
+            </div>
+        </div>
     </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
@@ -73,32 +150,85 @@
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        // Using default Leaflet markers
+        var icons = {
+            food: new L.Icon.Default(),
+            cafe: new L.Icon.Default(),
+            shopping: new L.Icon.Default()
+        };
+
         var cheapPlaces = [
-            { name: "Ronaldo + Co. Cooking", coords: [-33.713918, 151.084837]},
-            { name: "Oriental Asian Cuisine", coords: [-33.702863, 151.101006]},
-            { name: "YIYI Asian Cuisine", coords: [-33.425756, 151.344261]},
-            { name: "Master Kebabs", coords: [-33.425402, 151.343888]},
-            { name: "Wingboy Newtown", coords: [-33.8945, 151.1828]},
-            { name: "Coho Berowra", coords: [-33.612826, 151.138754]},
-            { name: "Mixue Ice cream and Tea", coords: [-33.704264, 151.100357]},
-            { name: "Target Hornsby", coords: [-33.705257, 151.101164]},
-            { name: "The Peak Cafe Newport", coords: [-33.653847, 151.32155]},
-            { name: "Zeus St Greek", coords: [-33.732123, 151.128936]}
+            { name: "Ronaldo + Co. Cooking", coords: [-33.713918, 151.084837], category: "food" },
+            { name: "Oriental Asian Cuisine", coords: [-33.702863, 151.101006], category: "food" },
+            { name: "YIYI Asian Cuisine", coords: [-33.425756, 151.344261], category: "food" },
+            { name: "Master Kebabs", coords: [-33.425402, 151.343888], category: "food" },
+            { name: "Wingboy Newtown", coords: [-33.8945, 151.1828], category: "food" },
+            { name: "Coho Berowra", coords: [-33.612826, 151.138754], category: "cafe" },
+            { name: "Mixue Ice cream and Tea", coords: [-33.704264, 151.100357], category: "cafe" },
+            { name: "Target Hornsby", coords: [-33.705257, 151.101164], category: "shopping" },
+            { name: "The Peak Cafe Newport", coords: [-33.653847, 151.32155], category: "cafe" },
+            { name: "Zeus St Greek", coords: [-33.732123, 151.128936], category: "food" }
         ];
 
-        cheapPlaces.forEach(function(place) {
-    const marker = L.marker(place.coords).addTo(map)
-        .bindPopup(`
-            <b>${place.name}</b><br>
-            <button onclick="window.location.href='Listview.html?lat=${place.coords[0]}&lng=${place.coords[1]}'">
-                View in List
-            </button>`);
+        var markers = [];
 
-            if (mapParams.lat === place.coords[0] && mapParams.lng === place.coords[1]) {
-                marker.openPopup();
-                map.setView(place.coords, mapParams.zoom || 14);
-    }
-});
+        function addMarkersToMap() {
+            cheapPlaces.forEach(function(place) {
+                const marker = L.marker(place.coords, { icon: icons[place.category] }).addTo(map)
+                    .bindPopup(`
+                        <b>${place.name}</b><br>
+                        <span style="color: ${getColorForCategory(place.category)}; font-size: 12px;">${place.category.toUpperCase()}</span><br>
+                        <button onclick="window.location.href='Listview.html?lat=${place.coords[0]}&lng=${place.coords[1]}'">
+                            View in List
+                        </button>`);
+
+                markers.push({ marker: marker, category: place.category, place: place });
+
+                if (mapParams.lat === place.coords[0] && mapParams.lng === place.coords[1]) {
+                    marker.openPopup();
+                    map.setView(place.coords, mapParams.zoom || 14);
+                }
+            });
+        }
+
+        function getColorForCategory(category) {
+            switch(category) {
+                case 'food': return '#e74c3c';
+                case 'cafe': return '#f39c12';
+                case 'shopping': return '#3498db';
+                default: return '#27ae60';
+            }
+        }
+
+        function toggleFilterMenu() {
+            const menu = document.getElementById('filterMenu');
+            menu.classList.toggle('show');
+        }
+
+        function filterPlaces(category, element) {
+            document.querySelectorAll('.filter-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+
+            markers.forEach(function(item) {
+                if (category === 'all' || item.category === category) {
+                    map.addLayer(item.marker);
+                } else {
+                    map.removeLayer(item.marker);
+                }
+            });
+
+            document.getElementById('filterMenu').classList.remove('show');
+        }
+
+        // Close the popup thingry dropdown
+        document.addEventListener('click', function(event) {
+            const container = document.querySelector('.filter-container');
+            if (!container.contains(event.target)) {
+                document.getElementById('filterMenu').classList.remove('show');
+            }
+        });
+
+        addMarkersToMap();
             
         var popup = L.popup();
 

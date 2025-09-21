@@ -3,12 +3,16 @@
 <head>
   <title>LiveLite - List View</title>
   <link rel="icon" type="image/x-icon" href="LiveliteIcon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
         html, body {
           margin: 0;
           padding: 5px;
           height: 100%;
           overflow-y: auto;
+          background:#f1f8e9;
+          font-family: 'Inter', sans-serif;
+          color: #2d4a3e;
         }
         .top-bar {
             position: absolute;
@@ -16,27 +20,68 @@
             left: 0;
             right: 0;
             height: 30px;
-            background-color: #f8f8f8;
-            z-index: 1000;
+            background: rgba(241, 248, 233, 0.95);
             padding: 10px;
+            font-family: 'Inter', sans-serif;
+            border-bottom: 1px solid rgba(39, 174, 96, 0.1);
         }
 
         .top-bar button {
-            padding: 3px 40px;
+            padding: 5px 32px;
             font-size: 15px;
-            font-family: 'Segoe UI', Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+            border-radius: 6px;
+            margin-right: 8px;
+            font-weight: 400;
         }
 
+        h1 {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
         
-        h1, .place {
-              margin-top: 60px;
-              background-color: white;
-              padding: 15px;
-              margin-bottom: 10px;
-              border-radius: 8px;
-              box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-              font-family: sans-serif;
-    }
+        .place {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(39, 174, 96, 0.1);
+        }
+
+        .place a {
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .place p {
+            margin: 8px 0;
+            line-height: 1.6;
+            color: #5a7c65;
+            font-weight: 300;
+        }
+
+        .place p strong {
+            color: #2d4a3e;
+            font-weight: 500;
+        }
   </style>
 </head>
 <body>
@@ -51,7 +96,7 @@
   <div class="place" data-lat="-33.612826" data-lng="151.138754">
     <a href="Mapview.html?lat=-33.612826&lng=151.138754&zoom=14">COHO BEROWRA</a>
     <p>Locally owned Cafe, Open everyday from 7:00-3:00. Delicious foods, classic modern cafe.</p> 
-    <p><strong>Location:</strong> Shop 11 1C Turner Ro  ad Berowra Heights, NSW 2082</p>
+    <p><strong>Location:</strong> Shop 11 1C Turner Road Berowra Heights, NSW 2082</p>
   </div>
   <div class="place" data-lat="-33.8945" data-lng="151.1828">
     <a href="Mapview.html?lat=-33.8945&lng=151.1828&zoom=14">WINGBOY NEWTOWN</a>
@@ -109,7 +154,8 @@
             `.place[data-lat='${params.lat}'][data-lng='${params.lng}']`
         );
         if (target) {
-            target.style.border = "2px solid green";
+            target.style.border = "2px solid #27ae60";
+            target.style.backgroundColor = "#f8fff8";
             target.scrollIntoView({ behavior: "smooth", block: "center" });
         }
     }
