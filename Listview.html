@@ -2,33 +2,48 @@
 <html>
 <head>
   <title>LiveLite - List View</title>
-  <link rel="icon" type="image/x-icon" href="favicon-32x32.png">
+  <link rel="icon" type="image/x-icon" href="LiveliteIcon.png">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      margin-bottom: 20px;
-    }
-    .place {
-      background-color: white;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .back-button {
-      margin-bottom: 20px;
+        html, body {
+          margin: 0;
+          padding: 5px;
+          height: 100%;
+          overflow-y: auto;
+        }
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background-color: #f8f8f8;
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        .top-bar button {
+            padding: 3px 40px;
+            font-size: 15px;
+            font-family: 'Segoe UI', Verdana, sans-serif;
+        }
+
+        
+        h1, .place {
+              margin-top: 60px;
+              background-color: white;
+              padding: 15px;
+              margin-bottom: 10px;
+              border-radius: 8px;
+              box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+              font-family: sans-serif;
     }
   </style>
 </head>
 <body>
-  <div class="back-button">
-    <button onclick="window.location.href='Mapview.html'" style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Map view</button>
-    <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'"style="padding: 3px 40px; font-size: 15px; font-family: 'Segoe UI',sans-serif;">Add A suggestion!</button>
+  <div class="top-bar">
+    <button onclick="window.location.href='Mapview.html'">Map view</button>
+    <button onclick="window.location.href='Financetips.html'">Finance Tips</button>
+    <button onclick="window.location.href='https://forms.gle/waeAtJZXPHfQZcMa6'">Add A suggestion!</button>
   </div>
 
   <h1>Cheap Places Near You</h1>
@@ -48,13 +63,37 @@
     <p>Incredibly good value tasty asian cuisine, variety of different asian specialties, easy to takeaway.</p> 
     <p><strong>Location:</strong> 13/236 Pacific Hwy, Hornsby NSW 2077</p>
   </div>
-    </div>
     <div class="place" data-lat="-33.425756" data-lng="151.344261">
     <a href="Mapview.html?lat=-33.425756&lng=151.344261&zoom=14">YIYI ASIAN CUISINE</a>
     <p>Full delicious meals for under $10 per person. Extremely high quality</p> 
     <p><strong>Location:</strong> 127/171 Mann Street, Gosford, NSW 2250</p>
   </div>
-
+    <div class="place" data-lat="-33.425402" data-lng="151.343888">
+    <a href="Mapview.html?lat=-33.425402&lng=151.343888&zoom=14">MASTER KEBABS</a>
+    <p>Incredibly Halal Snack packs and kebabs with grreat value for an affordable price</p> 
+    <p><strong>Location:</strong> 171 Mann St, Central Mangrove NSW 2250</p>
+  </div>
+    <div class="place" data-lat="-33.705257" data-lng="151.101164">
+    <a href="Mapview.html?lat=-33.705257&lng=151.101164&zoom=14">TARGET HORNSBY</a>
+    <p>Great budget options for clothing, bedding, homewares, gaming, toys and more</p> 
+    <p><strong>Location:</strong> George St, Hornsby NSW 2077</p>
+  </div>
+    <div class="place" data-lat="-33.704264" data-lng="151.100357">
+    <a href="Mapview.html?lat=-33.704264&lng=151.100357&zoom=14">Mixue Ice Cream and Tea</a>
+    <p>Good option for ice cream or any other sweet treat!</p> 
+    <p><strong>Location:</strong> 236 Pacific Hwy, Hornsby NSW 2077</p>
+  </div>
+    <div class="place" data-lat="-33.653847" data-lng="151.32155">
+    <a href="Mapview.html?lat=-33.653847&lng=151.32155&zoom=14">Peak Cafe Newport</a>
+    <p>The Peak Cafe is the perfect brunch destination for beautiful mornings by the sea. </p> 
+    <p><strong>Location:</strong>  Shop 1/383 Barrenjoey Rd, Newport NSW 2106</p>
+  </div>
+    <div class="place" data-lat="-33.732123" data-lng="151.128936">
+    <a href="Mapview.html?lat=-33.732123&lng=151.128936&zoom=14">Zeus St Greek</a>
+    <p>Enjoy the delicious flavours of authentic Greek cuisine and the best of Australian produce at Zeus Greek Street.  </p> 
+    <p><strong>Location:</strong>  31 Rohini St, Turramurra NSW 2074</p>
+  </div>
+  
   <script>
     function getQueryParams() {
         const params = new URLSearchParams(window.location.search);
